@@ -1,0 +1,9 @@
+{
+  "name": "aoc",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Advent of code",
+  "main": "index.js",
+  "author": "Sarthak Duggal",
+  "license": "MIT"
+}
