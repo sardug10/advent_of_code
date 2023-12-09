@@ -1,6 +1,7 @@
-package main
+package part1
 
 import (
+	"aoc_day4/utils"
 	"bufio"
 	"fmt"
 	"os"
@@ -8,17 +9,7 @@ import (
 	"strings"
 )
 
-func contaiins(arr []string, ele int) bool {
-	for _, char := range arr {
-		currentNum, _ := strconv.Atoi(char)
-		if currentNum == ele {
-			return true
-		}
-	}
-	return false
-}
-
-func main() {
+func Part1() {
 	var output []int
 
 	file, _ := os.Open("input.txt")
@@ -51,7 +42,7 @@ func main() {
 			trimmedMycharNum, error := strconv.Atoi(trimmedMychar)
 
 			if error == nil {
-				isInWinningNumbers := contaiins(*winningNumbersPointer, trimmedMycharNum)
+				isInWinningNumbers := utils.Contains(*winningNumbersPointer, trimmedMycharNum)
 				if isInWinningNumbers {
 					if currentInputResult == 0 {
 						currentInputResult += 1
@@ -71,6 +62,6 @@ func main() {
 		result += currentResult
 	}
 
-	fmt.Println("Current Input Result: ", result)
+	fmt.Println("Part 1", result)
 
 }
