@@ -33,5 +33,3 @@ games.forEach((game) => {
     result += gameNum;
   }
 });
-
-console.log(result);
