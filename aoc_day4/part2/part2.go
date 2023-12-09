@@ -10,7 +10,7 @@ import (
 )
 
 func Part2() {
-	var output []int
+	var output = 0
 
 	file, _ := os.Open("input.txt")
 
@@ -24,10 +24,18 @@ func Part2() {
 		inputArr = append(inputArr, line)
 	}
 
+	cardsCountMap := make(map[int]int)
+	inputArrLength := len(inputArr)
+
+	for i := 1; i <= inputArrLength; i++ {
+		cardsCountMap[i] = 1
+	}
+
 	// input := "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53"
-	for _, input := range inputArr {
+	for index, input := range inputArr {
 
 		game := strings.Split(input, ":")
+		currentOperatingCard := index + 1
 
 		gameNumbers := strings.Split(game[1], "|")
 
@@ -35,7 +43,7 @@ func Part2() {
 		winningNumbersPointer := &winningNumbers
 		myNumbers := strings.Split(gameNumbers[1], " ")
 
-		currentInputResult := 0
+		winningNumberCount := 0
 
 		for _, myChar := range myNumbers {
 			trimmedMychar := strings.TrimSpace(myChar)
@@ -44,24 +52,23 @@ func Part2() {
 			if error == nil {
 				isInWinningNumbers := utils.Contains(*winningNumbersPointer, trimmedMycharNum)
 				if isInWinningNumbers {
-					if currentInputResult == 0 {
-						currentInputResult += 1
-					} else {
-						currentInputResult = currentInputResult * 2
-					}
+					winningNumberCount += 1
 				}
 			}
 		}
 
-		output = append(output, currentInputResult)
+		currentCardCount := cardsCountMap[currentOperatingCard]
+
+		for i := currentOperatingCard + 1; i <= winningNumberCount+currentOperatingCard; i++ {
+			cardsCountMap[i] = cardsCountMap[i] + currentCardCount
+		}
 
 	}
 
-	result := 0
-	for _, currentResult := range output {
-		result += currentResult
+	for _, value := range cardsCountMap {
+		output += value
 	}
 
-	fmt.Println("Part 2 ", result)
+	fmt.Println("Part 2 ", output)
 
 }
