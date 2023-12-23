@@ -7,6 +7,5 @@ import (
 
 func main() {
 	fmt.Println("Main Function running...")
-	// one.One()
 	two.Two()
 }
