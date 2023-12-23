@@ -1,11 +1,11 @@
 package main
 
 import (
-	"eight/two"
+	"eight/one"
 	"fmt"
 )
 
 func main() {
-	fmt.Println("Main Function running...")
-	two.Two()
+	fmt.Println("Something Main Function running...")
+  one.One()
 }
